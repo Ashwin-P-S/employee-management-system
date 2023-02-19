@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Register</title>
+</head>
+
+<body>
+    <h1>User Profile</h1>
+    <form action="payment.html" name="profile" method="GET">
+        <table cellpadding="10" cellspacing="10">
+            <tr>
+                <td>Name: </td>
+                <td><input type="text" name="myname"></td>
+            </tr>
+            <td>Email: </td>
+            <td><input type="email" name="email"></td>
+            </tr>
+            <tr>
+                <td>Age: </td>
+                <td><input type="number" name="age"></td>
+            </tr>
+            <tr>
+                <td>Gender: </td>
+                <td>
+                    <input type="radio" name="gen" id="male"> <span>Male</span>
+                    &nbsp;
+                    <input type="radio" name="gen" id="female"> <span>Female</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Address: </td>
+                <td><textarea name="address" id="address" rows="3" cols="24"></textarea></td>
+            </tr>
+            <tr align="center">
+                <td><br><input type="submit" id="btn" name="submit" onClick="return validate()"></td>
+                <td><br><input type="reset" id="btn" name="reset"></td>
+            </tr>
+        </table>
+    </form>
+    <script lang="javascript">
+        function validate() {
+
+            myname = document.profile.myname;
+            email = document.profile.email;
+            age = document.profile.age;
+            gen = document.profile.gen;
+            address = document.profile.address;
+
+            if (myname.value == "") {
+                alert("Enter Name!");
+                myname.focus();
+                return false;
+            }
+
+            if (!isNaN(myname.value)) {
+                alert("Enter Valid Name!");
+                myname.focus();
+                return false;
+            }
+
+            if (email.value == "") {
+                alert("Enter Email ID!");
+                email.focus();
+                return false;
+            }
+
+            if (age.value == "") {
+                alert("Enter Age!");
+                age.focus();
+                return false;
+            }
+
+            if (age.value <= 10 || age.value >= 100) {
+                alert("Enter Valid Age!");
+                age.focus();
+                return false;
+            }
+
+            if (address.value == "") {
+                alert("Enter your address");
+                address.focus();
+                return false;
+            }
+
+            if (gen.value == "") {
+                alert("Select Gender");
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>

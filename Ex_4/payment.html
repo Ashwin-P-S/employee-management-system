@@ -66,6 +66,8 @@
 
         function validate() {
 
+            year = new Date().getFullYear();
+
             hname = document.payment.hname;
             cno = document.payment.cno;
             cvv = document.payment.cvv;
@@ -123,7 +125,7 @@
                 return false;
             }
 
-            if (yy.value.length != 4) {
+            if (yy.value.length != 4 || yy.value < 2023) {
                 alert("Enter valid Expiry Year!")
                 yy.focus();
                 return false;

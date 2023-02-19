@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card | Online Payment</title>
+</head>
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: rgb(40, 50, 60);
+        font-family: 'Segoe UI';
+    }
+
+    input:focus {
+        outline: 1px solid #4c3;
+    }
+
+    input {
+        outline: none;
+        font-family: 'Segoe UI';
+        padding: 5px 10px;
+        caret-color: #4c3;
+        border: 1px solid #4c3;
+        font-size: 1rem;
+    }
+
+    #agree {
+        accent-color: #4c3;
+        height: 18px;
+        width: 18px;
+    }
+
+    #agree:focus {
+        outline: 1px solid #4c3;
+    }
+
+    form {
+        padding: 30px;
+        margin: 30px;
+        border: 1px solid whitesmoke;
+        border-radius: 10px;
+        box-shadow: 0 10px 12px 10px whitesmoke;
+    }
+
+    select {
+        padding: 5px 10px;
+        width: 75px;
+        font-family: 'Segoe UI';
+        border: 1px solid #4c3;
+        font-size: 1rem;
+    }
+
+    select:focus {
+        outline: 1px solid #4c3;
+    }
+
+    option:focus,
+    option:checked {
+        background-color: #4c3;
+        color: #fff;
+        accent-color: #4c3;
+    }
+
+    #yy {
+        width: 50%;
+    }
+
+    #btn {
+        background-color: white;
+        color: #4c3;
+        font-family: 'Segoe UI';
+        font-size: 1rem;
+        border-radius: 5px;
+        padding: 7px 20px;
+        border: 1px solid #4c3;
+        box-shadow: 0 5px 6px 2px whitesmoke;
+    }
+
+    #btn:hover,
+    #btn:focus,
+    #btn:active {
+        color: white;
+        background-color: #4c3;
+        transition: .2s;
+    }
+</style>
+
+<body>
+    <h1>Credit Card Payment</h1>
+    <form method="GET" name="payment" action="success.html">
+        <table cellpadding="10">
+            <tr>
+                <td colspan="2"><label for="hname">Card Holder's Name:</label></td>
+                <td colspan="2"><input type="text" name="hname" placeholder="Holder's Name"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><label for="cno">Card Number:</label></td>
+                <td colspan="2"><input type="text" name="cno" placeholder="Card No"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><label for="cvv">CVV No: </label></td>
+                <td colspan="2"><input type="number" name="cvv" placeholder="CVV"></td>
+            </tr>
+            <tr>
+                <td><label>Expiry Date</label></td>
+            </tr>
+            <tr>
+                <td><label for="mm">Month:</label></td>
+                <td>
+                    <select name="mm" id="mm">
+                        <option></option>
+                        <option>Jan</option>
+                        <option>Feb</option>
+                        <option>Mar</option>
+                        <option>Apr</option>
+                        <option>May</option>
+                        <option>Jun</option>
+                        <option>Jul</option>
+                        <option>Aug</option>
+                        <option>Sep</option>
+                        <option>Oct</option>
+                        <option>Nov</option>
+                        <option>Dec</option>
+                    </select>
+                </td>
+                <td><label for="yy">Year:</label></td>
+                <td><input type="number" name="yy" id="yy" placeholder="YYYY"></td>
+            </tr>
+            <tr align="center">
+                <td colspan="4"><br>
+                    <input type="checkbox" name="agree" id="agree"> I agree to the Terms and Conditions applied!
+                </td>
+            </tr>
+            <tr align="center">
+                <td colspan="2"><br><input type="submit" id="btn" name="submit" onClick="return validate()"></td>
+                <td colspan="2"><br><input type="reset" id="btn" name="reset" onClick="return reset()"></td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+
+        function validate() {
+
+            hname = document.payment.hname;
+            cno = document.payment.cno;
+            cvv = document.payment.cvv;
+            mm = document.payment.mm;
+            yy = document.payment.yy;
+            tc = document.payment.agree;
+
+            if (hname.value == "") {
+                alert("Please enter Card Holder's Name!");
+                hname.focus();
+                return false;
+            }
+
+            if (cno.value == "") {
+                alert("Please enter Card Number!");
+                cno.focus();
+                return false;
+            }
+            if (cvv.value == "") {
+                alert("Please enter CVV Number!");
+                cvv.focus();
+                return false;
+            }
+            if (mm.value == "") {
+                alert("Please Select Expiry Month!");
+                mm.focus();
+                return false;
+            }
+            if (yy.value == "") {
+                alert("Please enter Expiry Year!");
+                yy.focus();
+                return false;
+            }
+
+            if (!tc.checked) {
+                alert("Please check the Terms and Conditions!");
+                tc.focus();
+                return false;
+            }
+
+            if (!isNaN(hname.value)) {
+                alert("Enter only Alphabets in Holder's Name")
+                return false;
+            }
+
+            if (cno.value.length != 16 || isNaN(cno.value)) {
+                alert("Enter Valid Card No!")
+                cno.focus();
+                return false;
+            }
+
+            if (cvv.value.length != 3) {
+                alert("Enter Valid CVV No!")
+                cvv.focus();
+                return false;
+            }
+
+            if (yy.value.length != 4) {
+                alert("Enter valid Expiry Year!")
+                yy.focus();
+                return false;
+            }
+        }
+
+        function reset() {
+            document.payment.hname.value = "";
+            document.payment.cno.value = "";
+            document.payment.cvv.value = "";
+            document.payment.yy.value = "";
+        }
+
+    </script>
+
+</body>
+
+</html>
